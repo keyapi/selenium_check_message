@@ -1,7 +1,7 @@
 name: Python application
 
 on:
-#  push:
+  push:
   schedule:
     - cron: '30 6 * * 0-6'
   
@@ -21,7 +21,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run Script
-      env:
-        GSHEETS_CREDS_JSON: ${{ secrets.GSHEETS_CREDS_JSON }}
-        CSV_SEP_METHOD_GSHEET: ${{ secrets.CSV_SEP_METHOD_GSHEET }}
-      run: python csv_to_gsheets.py
+#      env:
+#        GSHEETS_CREDS_JSON: ${{ secrets.GSHEETS_CREDS_JSON }}
+#        CSV_SEP_METHOD_GSHEET: ${{ secrets.CSV_SEP_METHOD_GSHEET }}
+      run: python driver.py
