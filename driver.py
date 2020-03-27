@@ -28,8 +28,6 @@ else:
 
 link = "https://www.google.com"
 driver.get(link)
-time.sleep(3)    
-    
 
 driver.quit()
 
