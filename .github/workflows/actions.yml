@@ -3,10 +3,10 @@ name: Python application
 on:
   push:
   schedule:
-    - cron: '30 6 * * 0-6'
+    - cron: '30 5 * * 0-6'
   
 jobs:
-  build:
+  driver_test:
 
     runs-on: ubuntu-latest
 
