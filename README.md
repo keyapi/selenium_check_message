@@ -1,2 +1,2 @@
-# amz message response
+# message response
 
