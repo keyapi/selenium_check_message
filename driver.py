@@ -1,20 +1,19 @@
-import requests
 from selenium import webdriver
+import requests
+import os
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 
 def driver_test():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
-
-    experimentalFlags = ['same-site-by-default-cookies@1','cookies-without-same-site-must-be-secure@1']
-    chromeLocalStatePrefs = { 'browser.enabled_labs_experiments' : experimentalFlags}
-    chrome_options.add_experimental_option('localState',chromeLocalStatePrefs)
-
     chrome_options.add_experimental_option("w3c", False)
 
     driver = webdriver.Chrome('chromedriver', options=chrome_options)
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(10)
 
     # driver version
     if 'browserVersion' in driver.capabilities:
@@ -29,6 +28,9 @@ def driver_test():
 
     link = "https://www.google.com"
     driver.get(link)
+    xpath_google_img = "//img[@alt='Google']"
+    elem_google_img = driver.find_element_by_xpath(xpath_google_img)
+    print(elem_google_img.get_attribute('src')
 
     driver.quit()
 
