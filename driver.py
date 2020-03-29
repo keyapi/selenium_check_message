@@ -31,7 +31,9 @@ def driver_test():
     driver.get(link)
     xpath_input = "//input[@name='q']"
     elem_input = driver.find_element_by_xpath(xpath_input)
-    print(elem_input.get_attribute('class'))
+    elem_input.send_keys('cheese')
+    elem_input.submit()
+    print(driver.title)
     driver.quit()
 
 if __name__ == "__main__":
