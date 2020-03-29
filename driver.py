@@ -29,9 +29,9 @@ def driver_test():
     link = "https://www.google.com"
 
     driver.get(link)
-    xpath_google_img = "//img[@alt='Google']"
-    elem_google_img = driver.find_element_by_xpath(xpath_google_img)
-    print(elem_google_img.get_attribute('src')
+    xpath_input = "//input[@name='q']"
+    elem_input = driver.find_element_by_xpath(xpath_input)
+    print(elem_input.get_attribute('class'))
     driver.quit()
 
 if __name__ == "__main__":
