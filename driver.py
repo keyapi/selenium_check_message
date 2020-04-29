@@ -146,8 +146,8 @@ if __name__ == "__main__":
     link_login = os.environ["LINK_LOGIN"]
     cookie_url = os.environ["COOKIE_URL"]
     pwd = os.environ["PWD"]
-    driver = login(link_login, cookie_url, pwd)
+ #   driver = login(link_login, cookie_url, pwd)
     
  #   link_message = os.environ["LINK_MESSAGE"]
  #   driver = check_message(driver, link_message)
-    driver.quit()
+ #   driver.quit()
