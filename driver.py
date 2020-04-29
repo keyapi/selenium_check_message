@@ -50,6 +50,7 @@ def login(link_login, cookie_url, pwd):
     
     driver.get(link_login)
     time.sleep(3)
+    print(driver.title)
     
     # add cookie 
     myfile = requests.get(cookie_url)
@@ -71,8 +72,9 @@ def login(link_login, cookie_url, pwd):
 
     xpath_login_button = "//input[@id='signInSubmit']"
     element_login_button = driver.find_element_by_xpath(xpath_login_button).click()
-    time.sleep(3)
-
+    time.sleep(5)
+    print(driver.title)
+    
     # check if login success, site loaded
     xpath_manage_orders = "//span[text()='Manage Orders']"
 
@@ -102,13 +104,12 @@ def check_message(driver, link_message):
     xpath_threads = "//li[contains(@class, 'threads-list-thread')]/.."
     list_elem_threads = driver.find_elements_by_xpath(xpath_threads)
     list_links_threads = [element.get_attribute('href') for element in list_elem_threads]
-    print(len(list_links_threads))
+    print(len(list_links_threads), 'messages')
 
-    xpath_badge = "//li[contains(@class, 'threads-list-thread')]/div/kat-badge/span" # parent of parent node
+    xpath_badge = "//li[contains(@class, 'threads-list-thread')]/div/kat-badge[@type='warning']/span[@class='warning']" # parent of parent node
     list_elem_badges = driver.find_elements_by_xpath(xpath_badge)
 
     list_expire = [int(re.search(r'\d+', element.text).group()) for element in list_elem_badges]
-    print(list_expire)
     
     dic_link_expire = dict(zip(list_links_threads, list_expire))
     expire_in_hours = 24 # in hours
