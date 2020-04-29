@@ -38,8 +38,8 @@ def driver_test():
     print(driver.title)
     
     #driver.save_screenshot("screenshot.png")
-    screenshot_base64 = driver.get_screenshot_as_base64()
-    print(screenshot_base64)
+    #screenshot_base64 = driver.get_screenshot_as_base64()
+    #print(screenshot_base64)
     driver.quit()
 
 def login(link_login, cookie_url, pwd):
@@ -68,7 +68,7 @@ def login(link_login, cookie_url, pwd):
 
     driver.get(link_login)
     time.sleep(3)
-    """
+
     # input pwd
     xpath_password = "//input[@id='ap_password']"
     element_cell_input = driver.find_element_by_xpath(xpath_password)
@@ -80,9 +80,10 @@ def login(link_login, cookie_url, pwd):
     xpath_login_button = "//input[@id='signInSubmit']"
     element_login_button = driver.find_element_by_xpath(xpath_login_button).click()
     time.sleep(5)
-    
+    screenshot_base64 = driver.get_screenshot_as_base64()
+    print(screenshot_base64)
     print(driver.page_source)
-    
+    """    
     # check if login success, site loaded
     xpath_manage_orders = "//span[text()='Manage Orders']"
 
