@@ -76,9 +76,9 @@ def login(link_login, cookie_url, pwd):
     xpath_login_button = "//input[@id='signInSubmit']"
     element_login_button = driver.find_element_by_xpath(xpath_login_button).click()
     time.sleep(5)
-    print(driver.title)
     
-
+    print(driver.page_source)
+"""
     # check if login success, site loaded
     xpath_manage_orders = "//span[text()='Manage Orders']"
 
@@ -100,7 +100,7 @@ def login(link_login, cookie_url, pwd):
             print(e)
         else:
             pass
-
+"""
     return driver
 
 def check_message(driver, link_message):
