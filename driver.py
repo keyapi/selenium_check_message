@@ -125,8 +125,17 @@ def check_message(driver, link_message):
             #button_no_response_needed.click()
     else:
         print('No messages')
-    
+        
+    return driver
+
 if __name__ == "__main__":
     driver_test()
+    link_login= os.environ["LINK_LOGIN"]
+    cookie_url= os.environ["COOKIE_URL"]
+    pwd = os.environ["PWD"]
     driver = login(link_login, cookie_url, pwd)
-    check_message(driver, link_message)
+    
+    link_message = os.environ["LINK_MESSAGE"]
+    driver = check_message(driver, link_message)
+    
+    driver.quit()
