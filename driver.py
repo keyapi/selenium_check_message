@@ -36,6 +36,10 @@ def driver_test():
     elem_input.send_keys('cheese')
     elem_input.submit()
     print(driver.title)
+    
+    #driver.save_screenshot("screenshot.png")
+    screenshot_base64 = driver.get_screenshot_as_base64()
+    print(screenshot_base64)
     driver.quit()
 
 def login(link_login, cookie_url, pwd):
@@ -64,7 +68,7 @@ def login(link_login, cookie_url, pwd):
 
     driver.get(link_login)
     time.sleep(3)
-    
+    """
     # input pwd
     xpath_password = "//input[@id='ap_password']"
     element_cell_input = driver.find_element_by_xpath(xpath_password)
@@ -78,7 +82,7 @@ def login(link_login, cookie_url, pwd):
     time.sleep(5)
     
     print(driver.page_source)
-    """
+    
     # check if login success, site loaded
     xpath_manage_orders = "//span[text()='Manage Orders']"
 
@@ -141,7 +145,7 @@ if __name__ == "__main__":
     link_login = os.environ["LINK_LOGIN"]
     cookie_url = os.environ["COOKIE_URL"]
     pwd = os.environ["PWD"]
-    driver = login(link_login, cookie_url, pwd)
+ #   driver = login(link_login, cookie_url, pwd)
     
  #   link_message = os.environ["LINK_MESSAGE"]
  #   driver = check_message(driver, link_message)
