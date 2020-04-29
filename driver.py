@@ -78,7 +78,7 @@ def login(link_login, cookie_url, pwd):
     time.sleep(5)
     
     print(driver.page_source)
-"""
+    """
     # check if login success, site loaded
     xpath_manage_orders = "//span[text()='Manage Orders']"
 
@@ -100,7 +100,7 @@ def login(link_login, cookie_url, pwd):
             print(e)
         else:
             pass
-"""
+    """
     return driver
 
 def check_message(driver, link_message):
