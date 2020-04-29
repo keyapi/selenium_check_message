@@ -130,8 +130,8 @@ def check_message(driver, link_message):
 
 if __name__ == "__main__":
     driver_test()
-    link_login= os.environ["LINK_LOGIN"]
-    cookie_url= os.environ["COOKIE_URL"]
+    link_login = os.environ["LINK_LOGIN"]
+    cookie_url = os.environ["COOKIE_URL"]
     pwd = os.environ["PWD"]
     driver = login(link_login, cookie_url, pwd)
     
