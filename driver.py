@@ -59,7 +59,8 @@ def login(link_login, cookie_url, pwd):
         cookies_list = json.load(f)
     for cookie in cookies_list:
         driver.add_cookie(cookie)
-        
+    print(os.listdir())
+    """
     driver.get(link_login)
     time.sleep(3)
     
@@ -94,7 +95,7 @@ def login(link_login, cookie_url, pwd):
             time.sleep(3)
         except:
             pass
-    
+    """   
     return driver
 
 def check_message(driver, link_message):
@@ -137,7 +138,7 @@ if __name__ == "__main__":
     pwd = os.environ["PWD"]
     driver = login(link_login, cookie_url, pwd)
     
-    link_message = os.environ["LINK_MESSAGE"]
-    driver = check_message(driver, link_message)
+ #   link_message = os.environ["LINK_MESSAGE"]
+ #   driver = check_message(driver, link_message)
     
     driver.quit()
