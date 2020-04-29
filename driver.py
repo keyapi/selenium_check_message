@@ -59,7 +59,6 @@ def login(link_login, cookie_url, pwd):
     with open('cookie.json', 'r') as f: 
         cookies_list = json.load(f)
     for cookie in cookies_list:
-        print(cookie)
         driver.add_cookie(cookie)
     print(os.listdir())
 
@@ -97,7 +96,9 @@ def login(link_login, cookie_url, pwd):
             print('skip fixup phone')
             element_phone_skip.click()
             time.sleep(3)
-        except:
+        except Exception as e:
+            print(e)
+        else:
             pass
 
     return driver
