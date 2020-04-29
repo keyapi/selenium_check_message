@@ -21,7 +21,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run Script
-#      env:
-#        GSHEETS_CREDS_JSON: ${{ secrets.GSHEETS_CREDS_JSON }}
-#        CSV_SEP_METHOD_GSHEET: ${{ secrets.CSV_SEP_METHOD_GSHEET }}
+      env:
+        LINK_LOGIN: ${{ secrets.LINK_LOGIN }}
+        COOKIE_URL: ${{ secrets.COOKIE_URL }}
+        PWD: ${{ secrets.PWD }}
+        LINK_MESSAGE: ${{ secrets.LINK_MESSAGE }}
       run: python driver.py
