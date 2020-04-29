@@ -60,7 +60,7 @@ def login(link_login, cookie_url, pwd):
     for cookie in cookies_list:
         driver.add_cookie(cookie)
     print(os.listdir())
-    """
+
     driver.get(link_login)
     time.sleep(3)
     
@@ -70,12 +70,14 @@ def login(link_login, cookie_url, pwd):
     element_cell_input.clear()
     send_text = pwd
     element_cell_input.send_keys(send_text)
+    time.sleep(1)
 
     xpath_login_button = "//input[@id='signInSubmit']"
     element_login_button = driver.find_element_by_xpath(xpath_login_button).click()
     time.sleep(5)
     print(driver.title)
     
+    """
     # check if login success, site loaded
     xpath_manage_orders = "//span[text()='Manage Orders']"
 
