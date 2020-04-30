@@ -69,17 +69,28 @@ def login(link_login, cookie_url, pwd):
     driver.get(link_login)
     time.sleep(3)
 
-    # input pwd
-    xpath_password = "//input[@id='ap_password']"
-    element_cell_input = driver.find_element_by_xpath(xpath_password)
-    element_cell_input.clear()
-    send_text = pwd
-    element_cell_input.send_keys(send_text)
-    time.sleep(1)
+    # check if login success, site loaded
+    xpath_manage_orders = "//span[text()='Manage Orders']"
 
-    xpath_login_button = "//input[@id='signInSubmit']"
-    element_login_button = driver.find_element_by_xpath(xpath_login_button).click()
-    time.sleep(5)
+    try:
+        driver.find_element_by_xpath(xpath_manage_orders)
+        print('login success, site loaded')
+    except:
+        # input pwd
+        try:
+            xpath_password = "//input[@id='ap_password']"
+            element_cell_input = driver.find_element_by_xpath(xpath_password)
+            element_cell_input.clear()
+            send_text = pwd
+            element_cell_input.send_keys(send_text)
+            time.sleep(1)
+
+            xpath_login_button = "//input[@id='signInSubmit']"
+            element_login_button = driver.find_element_by_xpath(xpath_login_button).click()
+            time.sleep(5)
+        except:
+            pass
+    
     screenshot_base64 = driver.get_screenshot_as_base64()
     print(screenshot_base64)
     print(driver.page_source)
