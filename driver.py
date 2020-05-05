@@ -69,55 +69,43 @@ def login(link_login, cookie_url, pwd):
     driver.get(link_login)
     time.sleep(3)
 
-    # check if login success, site loaded
+    # first check if login success
     xpath_manage_orders = "//span[text()='Manage Orders']"
 
     try:
         driver.find_element_by_xpath(xpath_manage_orders)
-        print('login success, site loaded')
+        print('login success directly')   
     except:
         # input pwd
-        try:
-            xpath_password = "//input[@id='ap_password']"
-            element_cell_input = driver.find_element_by_xpath(xpath_password)
-            element_cell_input.clear()
-            send_text = pwd
-            element_cell_input.send_keys(send_text)
-            time.sleep(1)
+        xpath_password = "//input[@id='ap_password']"
+        element_cell_input = driver.find_element_by_xpath(xpath_password)
+        element_cell_input.clear()
+        send_text = pwd
+        element_cell_input.send_keys(send_text)
 
-            xpath_login_button = "//input[@id='signInSubmit']"
-            element_login_button = driver.find_element_by_xpath(xpath_login_button).click()
-            time.sleep(5)
-        except:
-            pass
-    
-    screenshot_base64 = driver.get_screenshot_as_base64()
-    print(screenshot_base64)
-    print(driver.page_source)
-    """    
-    # check if login success, site loaded
-    xpath_manage_orders = "//span[text()='Manage Orders']"
-
-    try:
-        driver.find_element_by_xpath(xpath_manage_orders)
-        print('login success, site loaded')
-    except:
-        print('login problem')
-        # if login problem, click fixup-phone-skip-link
+        xpath_login_button = "//input[@id='signInSubmit']"
+        element_login_button = driver.find_element_by_xpath(xpath_login_button).click()
+        time.sleep(3)
         
-        xpath_phone_skip = "//a[@id='ap-account-fixup-phone-skip-link']"
-
+        # check again if login success
         try:
-            element_phone_skip = driver.find_element_by_xpath(xpath_phone_skip)
-            print('skip fixup phone')
-            element_phone_skip.click()
-            time.sleep(3)
-        except Exception as e:
-            print(e)
-        else:
-            pass
-    """
+            driver.find_element_by_xpath(xpath_manage_orders)
+            print('login success with pwd')
+        except:
+            # if need skip fixup-phone
+            xpath_phone_skip = "//a[@id='ap-account-fixup-phone-skip-link']"
+            try:
+                element_phone_skip = driver.find_element_by_xpath(xpath_phone_skip)
+                print('login skipped fixup phone')
+                element_phone_skip.click()
+                time.sleep(3)
+            except:
+                print('login problem, taking screenshot')
+                screenshot_base64 = driver.get_screenshot_as_base64()
+                print(screenshot_base64)
+    
     return driver
+
 
 def check_message(driver, link_message):
     driver.get(link_message)
@@ -157,8 +145,8 @@ if __name__ == "__main__":
     link_login = os.environ["LINK_LOGIN"]
     cookie_url = os.environ["COOKIE_URL"]
     pwd = os.environ["PWD"]
- #   driver = login(link_login, cookie_url, pwd)
+    driver = login(link_login, cookie_url, pwd)
     
  #   link_message = os.environ["LINK_MESSAGE"]
  #   driver = check_message(driver, link_message)
- #   driver.quit()
+    driver.quit()
